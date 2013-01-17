@@ -1,0 +1,9 @@
+<% if notice %>
+    <%= notice %>
+<% end %>
+
+Your Pragmatic Cart
+
+<% @cart.line_items.each do |item| %>
+    <%= item.product.title %>
+<% end %>
