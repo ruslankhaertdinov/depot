@@ -1,0 +1,22 @@
+Deploying a Ruby on Rails application: an example
+
+Suppose you have a Rails application in /somewhere. Add a virtual host to your
+Apache configuration file and set its DocumentRoot to /somewhere/public:
+
+<VirtualHost *:80>
+ServerName www.yourhost.com
+# !!! Be sure to point DocumentRoot to 'public'!
+DocumentRoot /somewhere/public    
+<Directory /somewhere/public>
+# This relaxes Apache security settings.
+AllowOverride all
+# MultiViews must be turned off.
+Options -MultiViews
+</Directory>
+</VirtualHost>
+
+And that's it! You may also want to check the Users Guide for security and
+optimization tips, troubleshooting and other useful information:
+
+/home/ruslanimos/.rvm/gems/ruby-1.9.3-p194@depot/gems/passenger-3.0.19/doc/Users guide Apache.html
+
