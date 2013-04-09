@@ -15,3 +15,5 @@ Product.create!(title: 'Programming Ruby 1.9',
                    </p>},
                image_url: 'ruby.jpg',
                price: 49.95)
+
+User.create!(name: 'Lorem', password: '123456')
