@@ -1,7 +1,7 @@
 <div class="depot_form">
-  <!--<%# if flash[:alert] %>-->
-      <!--<p id="notice"><%= flash[:alert] %></p>-->
-  <!--<%# end %>-->
+  <% if flash[:alert] %>
+      <p id="notice"><%= flash[:alert] %></p>
+  <% end %>
   <%= form_tag do %>
       <fieldset>
         <legend>Please Log In</legend>
@@ -15,6 +15,7 @@
         </div>
         <div>
           <%= submit_tag "Login" %>
+          <%= link_to "Sign up", new_user_url %>
         </div>
       </fieldset>
   <% end %>
