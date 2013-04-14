@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :logged_in?, :current_user_admin?
 
   before_filter :authorize
-  before_filter :authorize_admin
   before_filter :set_i18n_locale_from_params
 
 
@@ -35,12 +34,6 @@ class ApplicationController < ActionController::Base
   def authorize
     unless User.find_by_id(session[:user_id])
       redirect_to login_url, notice: "Please log in"
-    end
-  end
-
-  def authorize_admin
-    unless User.find_by_id(session[:user_id]).try(:admin)
-      redirect_to login_url
     end
   end
 

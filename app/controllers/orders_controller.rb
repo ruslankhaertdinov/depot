@@ -2,7 +2,11 @@ class OrdersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create]
 
   def index
-    @orders = Order.paginate(page: params[:page], order: 'created_at desc', per_page: 10)
+    @orders = if current_user_admin?
+                Order.paginate(page: params[:page], order: 'created_at desc', per_page: 10)
+              else
+                Order.for(current_user).paginate(page: params[:page], order: 'created_at desc', per_page: 10)
+              end
 
     respond_to do |format|
       format.html
@@ -41,6 +45,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
+    @order.user_id = current_user.id
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
@@ -82,4 +87,5 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
