@@ -3,12 +3,13 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   setup do
     @input_attributes = {
-        name:
-            "sam",
-        password:
-            "private",
-        password_confirmation: "private"
+        name: "sam",
+        password: "private",
+        password_confirmation: "private",
+        email: "test@mail.com"
     }
+
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -27,7 +28,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: @input_attributes
     end
 
-    assert_redirected_to users_path
+    assert_redirected_to user_path(assigns(:user))
   end
 
   test "should show user" do

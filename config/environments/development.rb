@@ -38,17 +38,12 @@ Depot::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
-      address:
-          "smtp.gmail.com",
-      port:
-          587,
-      domain:
-          "domain.of.sender.net",
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "http://localhost:3000",
       authentication: "plain",
-      user_name:
-          "dave",
-      password:
-          "secret",
+      user_name: "ruslankhs",
+      password: "PHfpCZy9gj",
       enable_starttls_auto: true
   }
 end
