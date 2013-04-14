@@ -44,8 +44,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order])
-    @order.user_id = current_user.id
+    @order = Order.new(params[:order], user_id: current_user.id)
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
