@@ -16,4 +16,9 @@ Product.create!(title: 'Programming Ruby 1.9',
                image_url: 'ruby.jpg',
                price: 49.95)
 
-User.create!(name: 'Lorem', password: '123456')
+u = User.new
+u.name = 'Lorem'
+u.password= '123456'
+u.email = 'test@test.com'
+u.admin = true
+u.save!

@@ -1,7 +1,24 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  helper_method :current_user, :logged_in?, :current_user_admin?
+
   before_filter :authorize
+  before_filter :authorize_admin
   before_filter :set_i18n_locale_from_params
+
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
+
+  def logged_in?
+    current_user != nil
+  end
+
+  def current_user_admin?
+    current_user.try(:admin)
+  end
 
   private
 
@@ -21,6 +38,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_admin
+    unless User.find_by_id(session[:user_id]).try(:admin)
+      redirect_to login_url
+    end
+  end
+
   def set_i18n_locale_from_params
     if params[:locale]
       if I18n.available_locales.include?(params[:locale].to_sym)
@@ -34,6 +57,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_url_options
-    { locale: I18n.locale }
+    {locale: I18n.locale}
   end
 end
