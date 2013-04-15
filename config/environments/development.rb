@@ -42,8 +42,8 @@ Depot::Application.configure do
       port: 587,
       domain: "http://localhost:3000",
       authentication: "plain",
-      user_name: "ruslankhs",
-      password: "PHfpCZy9gj",
+      user_name: ENV['MAILER_USERNAME'],
+      password: ENV['MAILER_PASSWORD'],
       enable_starttls_auto: true
   }
 end

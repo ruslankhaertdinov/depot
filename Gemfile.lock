@@ -44,6 +44,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    dotenv (0.6.0)
+    dotenv-rails (0.6.0)
+      dotenv (= 0.6.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -124,6 +127,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capistrano
   coffee-rails (~> 3.2.1)
+  dotenv-rails
   jquery-rails
   mysql2
   rails (= 3.2.11)
