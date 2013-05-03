@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        OrderNotifier.welcome_email(@user).deliver
+        OrderNotifier.welcome_email(@user).deliver rescue
         format.html { redirect_to @user, notice: "User #{@user.name} was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
