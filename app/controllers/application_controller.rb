@@ -37,6 +37,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_admin
+    user = User.find_by_id(session[:user_id])
+    unless user && user.try(:admin)
+      redirect_to login_url, notice: "Please log in"
+    end
+  end
+
   def set_i18n_locale_from_params
     if params[:locale]
       if I18n.available_locales.include?(params[:locale].to_sym)
