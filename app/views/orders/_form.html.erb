@@ -16,7 +16,7 @@
 
     <div class="field">
       <%= f.label :name %>
-      <%= f.text_field :name, size: 40 %>
+      <%= f.text_field :name, size: 40, value: current_user.name %>
     </div>
     <div class="field">
       <%= f.label :address, t('.address_html') %>
@@ -25,7 +25,7 @@
     </div>
     <div class="field">
       <%= f.label :email %>
-      <%= f.email_field :email, size: 40 %>
+      <%= f.email_field :email, size: 40, value: current_user.email %>
     </div>
     <div class="field">
       <%= f.label :pay_type %>
