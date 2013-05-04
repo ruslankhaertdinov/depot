@@ -14,6 +14,12 @@
       <li class="active"><a href="#">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="#">Contact</a></li>
+      <% if logged_in? %>
+          <li><%= link_to 'Orders', orders_path %></li>
+          <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+      <% else %>
+          <li><%= link_to 'Login', login_path %></li>
+      <% end %>
     </ul>
     <h3 class="muted">Awesome Online Store</h3>
   </div>
@@ -86,6 +92,6 @@
   </div>
 
 </div>
-<%#= yield %>
+<%= yield %>
 </body>
 </html>

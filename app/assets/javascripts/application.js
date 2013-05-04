@@ -27,6 +27,8 @@
 //= require ./bootstrap-tooltip
 //= require ./bootstrap-transition
 //= require ./bootstrap-typeahead
-
-
 //= require_tree .
+
+$(document).ready(function () {
+    $('.carousel').carousel();
+});
