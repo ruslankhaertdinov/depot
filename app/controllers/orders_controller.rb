@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @products = @order.line_items.map {|i| [Product.find(i.product).title, i.quantity]}
+    @products = @order.line_items.map { |i| [Product.find(i.product).title, i.quantity] }
     respond_to do |format|
       format.html
       format.json { render json: @order }
@@ -43,14 +43,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(params[:order], user_id: current_user.id)
+    @order = Order.new(params[:order].merge!(user_id: current_user.id))
     @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        OrderNotifier.received(@order).deliver rescue
+        begin
+          OrderNotifier.received(@order).deliver
+        rescue
+        end
         format.html { redirect_to store_url, notice:
             I18n.t('.thanks') }
         format.json { render json: @order, status: :created, location: @order }
