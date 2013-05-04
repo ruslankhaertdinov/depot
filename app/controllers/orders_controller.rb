@@ -52,7 +52,8 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         begin
           OrderNotifier.received(@order).deliver
-        rescue
+        rescue => e
+          puts "error on received_email: #{e}"
         end
         format.html { redirect_to store_url, notice:
             I18n.t('.thanks') }
