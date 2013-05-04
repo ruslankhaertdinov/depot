@@ -1,49 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Pragprog Books Online Store</title>
+  <title>Awesome Online Store</title>
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
-<body class="<%= controller.controller_name %>">
-<div id="banner">
-  <%= form_tag store_path, class: 'locale' do %>
-      <%= select_tag 'set_locale',
-                     options_for_select(LANGUAGES, I18n.locale.to_s),
-                     onchange: 'this.form.submit()' %>
-      <%= submit_tag 'submit' %>
-      <%= javascript_tag "$('.locale input').hide()" %>
-  <% end %>
+<body>
+<div class="container-narrow">
 
-  <%= image_tag("rails.png") %>
-  <%= @page_title || t('.title') %>
-</div>
-<div id="columns">
-  <div id="side">
-    <% if @cart %>
-        <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-            <%= render @cart %>
-        <% end %>
-    <% end %>
-    <ul>
-      <li><%= link_to "#{t('.home')}", store_url %></li>
-      <% if current_user_admin? %>
-          <li><%= link_to 'Products', products_path %></li>
-          <li><%= link_to 'Users', users_path %></li>
-      <% end %>
-
-      <% if logged_in? %>
-          <li><%= link_to 'Orders', orders_path %></li>
-          <li><%= link_to 'Logout', logout_path, method: :delete %></li>
-      <% else %>
-          <li><%= link_to 'Login', login_path %></li>
-      <% end %>
+  <div class="masthead">
+    <ul class="nav nav-pills pull-right">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
+    <h3 class="muted">Awesome Online Store</h3>
   </div>
-  <div id="main">
-    <%= yield %>
+
+  <hr>
+
+  <div class="jumbotron">
+    <h1>Super awesome marketing speak!</h1>
+
+    <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus
+      commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+    <a class="btn btn-large btn-success" href="#">Sign up today</a>
   </div>
+
+  <hr>
+
+  <div class="row-fluid marketing">
+    <div class="span6">
+      <h4>Subheading</h4>
+
+      <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+      <h4>Subheading</h4>
+
+      <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+        fermentum.</p>
+
+      <h4>Subheading</h4>
+
+      <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+    </div>
+
+    <div class="span6">
+      <h4>Subheading</h4>
+
+      <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+      <h4>Subheading</h4>
+
+      <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet
+        fermentum.</p>
+
+      <h4>Subheading</h4>
+
+      <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="footer">
+    <p>© Company 2013</p>
+  </div>
+
 </div>
+<%#= yield %>
 </body>
 </html>
