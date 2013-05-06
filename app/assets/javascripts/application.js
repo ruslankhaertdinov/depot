@@ -30,6 +30,5 @@
 //= require_tree .
 
 $(document).ready(function () {
-    $('.carousel').carousel('cycle');
-    $('a.carousel-control.right').click()
+    $('.carousel').carousel();
 });
