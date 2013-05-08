@@ -2,6 +2,28 @@
     <p id="notice"><%= notice %></p>
 <% end %>
 
+<div class="jumbotron">
+  <div id="myCarousel" class="carousel slide">
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <% @products.each do |product| %>
+          <div class="item
+            <%= product == @products.first ? 'active' : '' %>">
+            <%= link_to (image_tag product.image_url), product_path(product) %>
+            <div class="carousel-caption">
+              <h3>
+                <%= link_to product.title, product_path(product) %>
+              </h3>
+            </div>
+          </div>
+      <% end %>
+
+    </div>
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+</div>
 <h1><%= t('.title_html') %></h1>
 
 <% @products.each do |product| %>
