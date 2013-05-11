@@ -13,7 +13,6 @@
       <ul class="nav nav-pills">
         <li><a href="#">Доставка и оплата</a></li>
         <li><a href="#">Контакты</a></li>
-        <li class="disabled"><a href="#">Контакты</a></li>
       </ul>
     </div>
   </div>
@@ -25,30 +24,16 @@
       <div class="span9 offset1">
         <div id="myCarousel" class="carousel slide">
           <div class="carousel-inner">
-            <div class="item">
-              <%= image_tag('dlya-litsa-i-tela-maski-dlya-litsa-i-tela--foto-carousel.jpg', alt: '') %>
-              <div class="container">
-                <div class="carousel-caption">
-                  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+            <% @products.each do |product| %>
+                <div class="item <%= product == @products.first ? 'active' : '' %>">
+                  <%= image_tag product.image_url, alt: '' %>
+                  <div class="container">
+                    <div class="carousel-caption">
+                      <p class="lead"><%= product.title %></p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="item active">
-              <%= image_tag('dlya-litsa-i-tela-maski-dlya-litsa-i-tela--foto-carousel.jpg', alt: '') %>
-              <div class="container">
-                <div class="carousel-caption">
-                  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <%= image_tag('dlya-litsa-i-tela-maski-dlya-litsa-i-tela--foto-carousel.jpg', alt: '') %>
-              <div class="container">
-                <div class="carousel-caption">
-                  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
           <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
           <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
@@ -57,7 +42,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="container-fluid">
   <div class="row-fluid">
