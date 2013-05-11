@@ -7,6 +7,62 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+<div class="card">
+</div>
+
+<div class="container-fluid">
+  <div class="hero-unit">
+    <div class="span3">
+      <h4><%= link_to 'Super Online Store', store_path %></h4>
+    </div>
+    <div class="span3 phone">
+      <h5> +7 (111) 222-333-444 </h5>
+    </div>
+    <div class="span6 top-menu">
+      <ul class="nav nav-pills">
+        <li><a href="#">Доставка и оплата</a></li>
+        <li><a href="#">Контакты</a></li>
+        <% if logged_in? %>
+            <li><%= link_to 'Orders', orders_path %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+        <% else %>
+            <li><%= link_to 'Login', login_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
+<% if @products.present? %>
+    <div class="carousel_container">
+      <div class="container">
+        <div class="row">
+          <div class="span9 offset1">
+            <div id="myCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <% @products.each do |product| %>
+                    <div class="item <%= product == @products.first ? 'active' : '' %>">
+                      <%= image_tag product.image_url, alt: '' %>
+                      <div class="container">
+                        <div class="carousel-caption">
+                          <p class="lead"><%= product.title %></p>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
 
 <%= yield %>
 
