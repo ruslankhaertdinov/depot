@@ -43,13 +43,14 @@
   </div>
 </div>
 
+
+
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span3">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <li class="nav-header">Лицо</li>
-          <li class="active"><a href="#">Link</a></li>
           <li><a href="#">Тени</a></li>
           <li><a href="#">Помада</a></li>
           <li><a href="#">Тушь</a></li>
@@ -67,45 +68,27 @@
     </div>
     <!--/span-->
     <div class="span9">
-      <h3>Лицо</h3>
-      <div class="row-fluid">
-        <ul class="thumbnails">
-          <li class="span3">
-            <div class="thumbnail product">
-              <%= link_to (image_tag @products[0].image_url), product_path(@products[0]) %>
-              <div class="caption">
-                <h5><%= link_to @products[0].title, product_path(@products[0]) %></h5>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <h3>Тело</h3>
+
+      <ul class="breadcrumb">
+        <li>
+          <%= link_to 'Главная', store_path %>
+          <span class="divider">/</span>
+        </li>
+        <li class="active">Помада</li>
+      </ul>
 
       <div class="row-fluid">
         <ul class="thumbnails">
-          <li class="span3">
-            <div class="thumbnail product">
-              <%= link_to (image_tag @products[1].image_url), product_path(@products[1]) %>
-              <div class="caption">
-                <h5><%= link_to @products[1].title, product_path(@products[1]) %></h5>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <h3>Снятие макияжа</h3>
-
-      <div class="row-fluid">
-        <ul class="thumbnails">
-          <li class="span3">
-            <div class="thumbnail product">
-              <%= link_to (image_tag @products[2].image_url), product_path(@products[2]) %>
-              <div class="caption">
-                <h5><%= link_to @products[2].title, product_path(@products[2]) %></h5>
-              </div>
-            </div>
-          </li>
+          <% @products.each do |product| %>
+              <li class="span3">
+                <div class="thumbnail product">
+                  <%= link_to (image_tag product.image_url), product_path(product) %>
+                  <div class="caption">
+                    <h5><%= link_to product.title, product_path(product) %></h5>
+                  </div>
+                </div>
+              </li>
+          <% end %>
         </ul>
       </div>
       <!--/row-->
