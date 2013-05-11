@@ -1,3 +1,5 @@
-<h1>Welcome</h1>
-It's <%= Time.now.strftime('%d.%m.%Y %H:%M:%S') %>
-We have <%= link_to "#{pluralize(@total_orders, 'order')}", orders_path %>.
+<div class="container">
+  <h1>Welcome</h1>
+  It's <%= Time.now.strftime('%d.%m.%Y %H:%M:%S') %>
+  We have <%= link_to "#{pluralize(@total_orders, 'order')}", orders_path %>.
+</div>

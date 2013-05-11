@@ -31,4 +31,10 @@
 
 $(document).ready(function () {
     $('.carousel').carousel();
+
+    if ($('table.orders').length > 0) {
+        $('.card').hide();
+    } else {
+        $('.card').show();
+    }
 });

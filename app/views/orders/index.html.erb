@@ -1,34 +1,37 @@
-<h1>Listing orders</h1>
+<div class="container">
+  <h1>Listing orders</h1>
 
-<% if @orders.present? %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Address</th>
-        <th>Email</th>
-        <th>Pay type</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+  <% if @orders.present? %>
+      <table class="table table-hover table-condensed orders">
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Pay type</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
 
-      <% @orders.each do |order| %>
-          <tr>
-            <td><%= order.name %></td>
-            <td><%= order.address %></td>
-            <td><%= order.email %></td>
-            <td><%= order.pay_type %></td>
-            <td><%= link_to 'Show', order %></td>
-            <td><%= link_to 'Edit', edit_order_path(order) %></td>
-            <td><%= link_to 'Destroy', order, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-          </tr>
-      <% end %>
-    </table>
-<% else %>
-    <h5>You have no orders yet</h5>
-<% end %>
+        <% @orders.each do |order| %>
+            <tr>
+              <td><%= truncate(order.name, length: 21) %></td>
+              <td><%= truncate(order.address, length: 21) %></td>
+              <td><%= truncate(order.email, length: 21) %></td>
+              <td><%= order.pay_type %></td>
+              <td><%= link_to 'Show', order, class: 'btn btn-mini btn-success' %></td>
+              <td><%= link_to 'Edit', edit_order_path(order), class: 'btn btn-mini btn-warning' %></td>
+              <td><%= link_to 'Destroy', order, class: 'btn btn-mini btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+      </table>
+  <% else %>
+      <h5>You have no orders yet</h5>
+  <% end %>
 
-<br/>
+  <br/>
 
-<%= link_to 'To Catalog', store_path %>
-<p><%= will_paginate @orders %></p>
+  <%= link_to 'На главную', store_path %>
+  <p><%= will_paginate @orders %></p>
+</div>
+
