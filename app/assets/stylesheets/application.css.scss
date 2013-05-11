@@ -192,3 +192,23 @@
   margin-bottom: 18px;
   height: 350px;
 }
+
+.card {
+  position: fixed;
+  right: -5px;
+  top: -5px;
+  padding: 9px;
+  width: 300px;
+  z-index: 10;
+  background-color: #08C;
+  color: #ffffff;
+  border-radius: 0 0 0 10px;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.05);
+  min-height: 30px;
+}
+
+.card_text {
+  font-size: 13px;
+  line-height: 18px;
+}
