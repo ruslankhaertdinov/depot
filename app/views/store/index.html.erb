@@ -31,7 +31,7 @@
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <% @available_categories.each do |category| %>
-            <li><%= link_to category, '#' %></li
+            <li><%= link_to category.title_ru, '#' %></li
             <% if category != @available_categories.last %>
               <li class="divider"></li>
             <% end %>

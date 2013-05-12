@@ -9,6 +9,6 @@ class StoreController < ApplicationController
       @cart = current_cart
     end
 
-    @available_categories = Category.available.map(&:title)
+    @available_categories = Category.available
   end
 end
