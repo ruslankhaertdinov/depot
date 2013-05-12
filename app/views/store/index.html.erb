@@ -1,40 +1,11 @@
-<% if @products.present? %>
-    <div class="carousel_container">
-      <div class="container">
-        <div class="row">
-          <div class="span9 offset1">
-            <div id="myCarousel" class="carousel slide">
-              <div class="carousel-inner">
-                <% @products.each do |product| %>
-                    <div class="item <%= product == @products.first ? 'active' : '' %>">
-                      <%= image_tag product.image_url, alt: '' %>
-                      <div class="container">
-                        <div class="carousel-caption">
-                          <p class="lead"><%= product.title %></p>
-                        </div>
-                      </div>
-                    </div>
-                <% end %>
-              </div>
-              <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-              <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-<% end %>
-
 <div class="container-fluid">
   <div class="row">
     <div class="span3">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <% @available_categories.each do |category| %>
-            <li><%= link_to category.title_ru, '#' %></li
-            <% if category != @available_categories.last %>
+              <li><%= link_to category.title_ru, store_path(category_id: category.id), remote: true %></li
               <li class="divider"></li>
-            <% end %>
           <% end %>
         </ul>
       </div>

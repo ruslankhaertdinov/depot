@@ -37,6 +37,10 @@
   </div>
 </div>
 
+<% if params[:controller] == 'store' %>
+  <%= render 'store/carousel', products: @products %>
+<% end %>
+
 <div class="container">
 <% if notice %>
     <p id="notice"><%= notice %></p>
