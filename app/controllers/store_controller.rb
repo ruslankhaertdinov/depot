@@ -8,5 +8,7 @@ class StoreController < ApplicationController
       @products = Product.order(:title)
       @cart = current_cart
     end
+
+    @available_categories = Category.available.map(&:title)
   end
 end
