@@ -37,12 +37,4 @@ $(document).ready(function () {
     } else {
         $('.card').show();
     }
-
-    if ($('#content_count').html().length == 0) {
-        $('#card_content').hide();
-        $('#empty_card_content').show();
-    } else {
-        $('#card_content').show();
-        $('#empty_card_content').hide();
-    }
 });
