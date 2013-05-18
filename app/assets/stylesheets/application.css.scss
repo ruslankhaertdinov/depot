@@ -198,7 +198,7 @@
   right: -5px;
   top: -5px;
   padding: 9px;
-  width: 300px;
+  min-width: 200px;
   z-index: 10;
   background-color: #08C;
   color: #ffffff;
@@ -228,4 +228,13 @@
 
 footer {
   margin-left: 35px;
+}
+
+.card_form {
+  display: inline;
+  float: left;
+}
+
+.card_btn {
+  margin-right: 7px;
 }

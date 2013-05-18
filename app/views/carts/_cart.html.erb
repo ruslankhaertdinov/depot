@@ -7,6 +7,5 @@
   </tr>
 </table>
 
-<%= button_to t('.checkout'), new_order_path, method: :get %>
-<%= button_to t('.empty'), cart, method: :delete,
-              confirm: 'Are you sure?' %>
+<%= button_to t('.checkout'), new_order_path, method: :get, class: 'btn btn-mini card_btn', form_class: 'card_form' %>
+<%= button_to t('.empty'), cart, method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini card_btn', form_class: 'card_form' %>
