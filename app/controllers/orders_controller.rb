@@ -15,7 +15,10 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @products = @order.line_items.map { |i| [Product.find(i.product).title, i.quantity] }
+    @products = @order.line_items.map { |i|
+      product = Product.find(i.product)
+      [product.title, product.price.to_f, i.quantity, product.price.to_f*i.quantity]
+    }
     respond_to do |format|
       format.html
       format.json { render json: @order }
