@@ -1,38 +1,42 @@
-<%= form_for(@order) do |f| %>
+<%= form_for @order, html: {class: 'form-horizontal'} do |f| %>
     <% if @order.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= raw t('errors.template.header', count: @order.errors.count,
-                        model: t('activerecord.models.order')) %>.</h2>
-
-          <p><%= t('errors.template.body') %></p>
-
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-                <li><%= raw msg %></li>
-            <% end %>
-          </ul>
-        </div>
+        <ul>
+          <% @order.errors.full_messages.each do |msg| %>
+              <li><%= raw msg %></li>
+          <% end %>
+        </ul>
     <% end %>
 
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name, size: 40, value: current_user.name %>
+    <div class="control-group">
+      <%= f.label :name, class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, size: 40, value: current_user.name, placeholder: 'Please enter your name' %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :address, t('.address_html') %>
-      <br/>
-      <%= f.text_area :address, rows: 3, cols: 40 %>
+
+    <div class="control-group">
+      <%= f.label :address, t('.address_html'), class: 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :address, rows: 3, cols: 40, placeholder: 'Please enter target address here' %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, size: 40, value: current_user.email %>
+
+    <div class="control-group">
+      <%= f.label :email, class: 'control-label' %>
+      <div class="controls">
+        <%= f.email_field :email, size: 40, value: current_user.email, placeholder: 'Please enter your email' %>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :pay_type %>
-      <%= f.select :pay_type, Order::PAYMENT_TYPES,
-                   prompt: t('.pay_prompt_html') %>
+
+    <div class="control-group">
+      <%= f.label :pay_type, class: 'control-label' %>
+      <div class="controls">
+        <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                     prompt: t('.pay_prompt_html') %>
+      </div>
     </div>
-    <div class="actions">
-      <%= f.submit t('.submit') %>
+
+    <div class="form-actions">
+      <%= button_tag  t('.submit'), class: 'btn btn-primary' %>
     </div>
 <% end %>
