@@ -9,6 +9,12 @@
             <%= link_to (image_tag product.image_url), product_path(product) %>
             <div class="caption">
               <h5><%= link_to product.title, product_path(product) %></h5>
+              <p>
+                $
+                <%= product.price %>
+                <span>&nbsp;</span>
+                <a href="#" class="btn btn-mini btn-primary">Купить</a>
+              </p>
             </div>
           </div>
         </li>
