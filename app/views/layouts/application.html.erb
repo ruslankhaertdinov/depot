@@ -8,6 +8,9 @@
 </head>
 <body>
 <div class="card">
+  <div id="empty_card_content">
+    Ваша корзина пуста
+  </div>
   <% if @cart %>
       <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
           <%= render @cart %>

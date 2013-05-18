@@ -37,4 +37,14 @@ $(document).ready(function () {
     } else {
         $('.card').show();
     }
+
+    if ($('.cart_title').is(':visible')) {
+        $('#empty_card_content').hide();
+    } else {
+        $('#empty_card_content').show();
+    }
+
+    $(document).on('click', '.btn_add_product', function(){
+        $('#empty_card_content').hide('blind', 500);
+    });
 });
