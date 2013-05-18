@@ -20,9 +20,11 @@
           <% @products.each do |product| %>
               <li class="span3">
                 <div class="thumbnail product">
-                  <%= link_to (image_tag product.image_url), product_path(product) %>
+                  <%= link_to (image_tag product.image_url), store_path(category_id: product.category.id), remote: true %>
                   <div class="caption">
-                    <h5><%= link_to product.title, product_path(product) %></h5>
+                    <h5>
+                      <%= link_to product.title, store_path(category_id: product.category.id), remote: true %>
+                    </h5>
                   </div>
                 </div>
               </li>
