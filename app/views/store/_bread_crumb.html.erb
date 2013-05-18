@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+  <li>
+    <%= link_to 'Главная', store_path %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= Category.find(params[:category_id]).title_ru %>
+  </li>
+</ul>
