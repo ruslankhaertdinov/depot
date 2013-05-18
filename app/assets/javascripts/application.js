@@ -47,4 +47,7 @@ $(document).ready(function () {
     $(document).on('click', '.btn_add_product', function(){
         $('#empty_card_content').hide('blind', 500);
     });
+
+
+    $(".alert").alert();
 });
