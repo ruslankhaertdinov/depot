@@ -1,4 +1,4 @@
-<% unless params[:category_id] %>
+<% unless params[:category_id] || params[:page].to_i > 1 %>
     <div id="carousel">
       <%= render 'store/carousel', products: @products %>
     </div>

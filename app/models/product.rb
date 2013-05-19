@@ -14,6 +14,8 @@ class Product < ActiveRecord::Base
       message: 'must be a URL for GIF, JPG or PNG image.'
   }
 
+  scope :sorted, -> { order('created_at DESC') }
+
   private
 
   def ensure_not_referenced_by_any_line_item

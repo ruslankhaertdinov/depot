@@ -4,7 +4,7 @@ class StoreController < ApplicationController
   skip_before_filter :authorize
 
   def index
-    @products = get_products.paginate(page: params[:page], order: 'title', per_page: 12)
+    @products = get_products.paginate(page: params[:page], per_page: 12)
     @cart = current_cart
     @available_categories = Category.available
 
@@ -18,9 +18,9 @@ class StoreController < ApplicationController
 
   def get_products
     if params[:category_id].present?
-      Product.where('category_id = ?', params[:category_id])
+      Product.where('category_id = ?', params[:category_id]).sorted
     else
-      Product.all
+      Product.sorted
     end
   end
 end
