@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class StoreController < ApplicationController
   skip_before_filter :authorize
 
