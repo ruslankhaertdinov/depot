@@ -38,4 +38,8 @@ ru:
       pay_prompt_html: "Выберите способ оплаты"
       submit: "Сделать заказ"
 
+  products:
+    show:
+      add_html: "Добавить в корзину"
+
   thanks: "Благодарим Вас за заказ"
