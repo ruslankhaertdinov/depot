@@ -11,7 +11,7 @@
                       <div class="container">
                         <div class="carousel-caption">
                           <p class="lead">
-                            <%= link_to product.category.title_ru, store_path(category_id: product.category.id) %>
+                            <%= link_to product.category.formatted_title, store_path(category_id: product.category.id) %>
                           </p>
                         </div>
                       </div>

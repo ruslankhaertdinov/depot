@@ -1,10 +1,6 @@
 module StoreHelper
   def current_path(id)
     @category ||= Category.where(id: id).first
-    if @category
-      @category.title_ru
-    else
-      @category
-    end
+    @category.formatted_title if @category
   end
 end

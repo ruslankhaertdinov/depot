@@ -17,6 +17,7 @@ en:
       price: "Price"
       category: "Category"
       description: "Description"
+      home_page: "Home"
 
   carts:
     cart:

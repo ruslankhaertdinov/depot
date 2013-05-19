@@ -14,6 +14,8 @@ es:
       price: "Rrecio"
       category: "Categoría"
       description: "Descripción"
+      home_page: 'Сasa'
+
 
   carts:
     cart:

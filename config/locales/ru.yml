@@ -14,6 +14,7 @@ ru:
       price: "Цена"
       category: "Категория"
       description: "Описание"
+      home_page: 'Главная'
 
   carts:
     cart:
