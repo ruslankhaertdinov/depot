@@ -30,6 +30,9 @@
       <ul class="nav nav-pills">
         <li><%= link_to 'Catalog', store_path %></li>
         <% if logged_in? %>
+            <% if current_user_admin? %>
+                <li><%= link_to 'Products', products_path %></li>
+            <% end %>
             <li><%= link_to 'Orders', orders_path %></li>
             <li><%= link_to 'Logout', logout_path, method: :delete %></li>
         <% else %>
