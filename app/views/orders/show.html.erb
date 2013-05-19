@@ -1,34 +1,44 @@
-<% if notice %>
-    <p id="notice"><%= notice %></p>
-<% end %>
+<div class="container">
+  <p>
+    <b>Name:</b>
+    <%= @order.name %>
+  </p>
 
-<p>
-  <b>Name:</b>
-  <%= @order.name %>
-</p>
+  <p>
+    <b>Address:</b>
+    <%= @order.address %>
+  </p>
 
-<p>
-  <b>Address:</b>
-  <%= @order.address %>
-</p>
+  <p>
+    <b>Email:</b>
+    <%= @order.email %>
+  </p>
 
-<p>
-  <b>Email:</b>
-  <%= @order.email %>
-</p>
+  <p>
+    <b>Pay type:</b>
+    <%= @order.pay_type %>
+  </p>
 
-<p>
-  <b>Pay type:</b>
-  <%= @order.pay_type %>
-</p>
+  <table class="table table-hover table-condensed table-bordered">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Sum</th>
+    </tr>
+    </thead>
+    <% @products.each do |product| %>
+        <tr>
+          <td><%= "#{product[0]}" %></td>
+          <td><%= "#{product[1]} x #{product[2]}" %></td>
+          <td><%= "#{product[3]}" %></td>
+        </tr>
+    <% end %>
+  </table>
 
-<p>
-  <b>Products:</b>
-  <% @products.each do |product| %>
-    <%= "#{product.first} x #{product.last}" %>
+
+  <% if current_user_admin? %>
+      <%= link_to 'Edit', edit_order_path(@order) %> |
   <% end %>
-</p>
-
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+  <%= link_to 'Back', orders_path %>
+</div>

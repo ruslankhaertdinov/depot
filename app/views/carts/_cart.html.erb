@@ -3,10 +3,9 @@
   <%= render(cart.line_items) %>
   <tr class="total_line">
     <td colspan="2">Total</td>
-    <td class="total_cell"><%= number_to_currency(cart.total_price) %></td>
+    <td class="total_cell"><%= number_to_currency(cart.total_price, unit: "$", format: "%u%n") %></td>
   </tr>
 </table>
 
-<%= button_to t('.checkout'), new_order_path, method: :get %>
-<%= button_to t('.empty'), cart, method: :delete,
-              confirm: 'Are you sure?' %>
+<%= button_to t('.checkout'), new_order_path, method: :get, class: 'btn btn-mini card_btn', form_class: 'card_form' %>
+<%= button_to t('.empty'), cart, method: :delete, confirm: 'Are you sure?', class: 'btn btn-mini card_btn', form_class: 'card_form' %>

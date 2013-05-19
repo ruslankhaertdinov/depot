@@ -13,4 +13,41 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require bootstrap.min.js
+//= require ./bootstrap-affix
+//= require ./bootstrap-alert
+//= require ./bootstrap-button
+//= require ./bootstrap-carousel
+//= require ./bootstrap-collapse
+//= require ./bootstrap-dropdown
+//= require ./bootstrap-modal
+//= require ./bootstrap-popover
+//= require ./bootstrap-scrollspy
+//= require ./bootstrap-tab
+//= require ./bootstrap-tooltip
+//= require ./bootstrap-transition
+//= require ./bootstrap-typeahead
 //= require_tree .
+
+$(document).ready(function () {
+    $('.carousel').carousel();
+
+    if ($('table.orders').length > 0) {
+        $('.card').hide();
+    } else {
+        $('.card').show();
+    }
+
+    if ($('.cart_title').is(':visible')) {
+        $('#empty_card_content').hide();
+    } else {
+        $('#empty_card_content').show();
+    }
+
+    $(document).on('click', '.btn_add_product', function(){
+        $('#empty_card_content').hide('blind', 500);
+    });
+
+
+    $(".alert").alert();
+});

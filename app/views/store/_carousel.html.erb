@@ -1,0 +1,28 @@
+<% if products.present? %>
+    <div class="carousel_container">
+      <div class="container">
+        <div class="row">
+          <div class="span9 offset1">
+            <div id="myCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <% products.each do |product| %>
+                    <div class="item <%= product == products.first ? 'active' : '' %>">
+                      <%= link_to (image_tag product.image_url.galleried, alt: ''), store_path(category_id: product.category.id) %>
+                      <div class="container">
+                        <div class="carousel-caption">
+                          <p class="lead">
+                            <%= link_to product.category.formatted_title, store_path(category_id: product.category.id) %>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                <% end %>
+              </div>
+              <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+              <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

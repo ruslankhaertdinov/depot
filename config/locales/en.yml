@@ -14,6 +14,10 @@ en:
     index:
       title_html: "Your Pragmatic Catalog"
       add_html: "Add to Cart"
+      price: "Price"
+      category: "Category"
+      description: "Description"
+      home_page: "Home"
 
   carts:
     cart:
@@ -40,5 +44,13 @@ en:
       pay_type: "Pay with"
       pay_prompt_html: "Select a payment method"
       submit: "Place Order"
+
+  products:
+    show:
+      add_html: "Add to Cart"
+      price: "Price"
+      title: "Title"
+      category: "Category"
+      description: "Description"
 
   thanks: "Thank you for your order"

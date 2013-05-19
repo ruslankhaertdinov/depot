@@ -14,4 +14,5 @@
 /log/*.log
 /tmp
 /.idea
-#.env
+.env
+public/uploads/product/*

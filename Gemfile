@@ -45,3 +45,5 @@ group :development do
 end
 
 gem 'dotenv-rails'
+gem 'carrierwave'
+gem "mini_magick"

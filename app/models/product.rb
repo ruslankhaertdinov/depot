@@ -1,9 +1,10 @@
 class Product < ActiveRecord::Base
+  mount_uploader :image_url, ProductImageUploader
   has_many :line_items
-
+  belongs_to :category
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  attr_accessible :title, :price, :description, :image_url
+  attr_accessible :title, :price, :description, :image_url, :category_id
 
   validates :title, :description, :image_url, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0.01 }
@@ -12,6 +13,8 @@ class Product < ActiveRecord::Base
       with: %r{\.(gif|jpg|png)\z}i,
       message: 'must be a URL for GIF, JPG or PNG image.'
   }
+
+  scope :sorted, -> { order('created_at DESC') }
 
   private
 

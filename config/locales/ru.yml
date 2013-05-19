@@ -11,6 +11,10 @@ ru:
     index:
       title_html: "Каталог товаров"
       add_html: "Добавить в корзину"
+      price: "Цена"
+      category: "Категория"
+      description: "Описание"
+      home_page: 'Главная'
 
   carts:
     cart:
@@ -37,5 +41,17 @@ ru:
       pay_type: "Оплатить через"
       pay_prompt_html: "Выберите способ оплаты"
       submit: "Сделать заказ"
+
+  products:
+    show:
+      add_html: "Добавить в корзину"
+      price: "Цена"
+      title: "Название"
+      category: "Категория"
+      description: "Описание"
+
+  will_paginate:
+    previous_label: "Назад"
+    next_label: "Вперед"
 
   thanks: "Благодарим Вас за заказ"

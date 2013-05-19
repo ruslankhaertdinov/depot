@@ -1,7 +1,11 @@
+require 'will_paginate/array'
+
 class ProductsController < ApplicationController
 
+  before_filter :authorize_admin, except: [:show]
+
   def index
-    @products = Product.all
+    @products = Product.all.paginate(page: params[:page], order: 'created_at desc', per_page: 10)
 
     respond_to do |format|
       format.html
@@ -11,6 +15,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @cart = current_cart
 
     respond_to do |format|
       format.html
