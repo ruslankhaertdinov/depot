@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  #mount_uploader :image_url, ProductImageUploader
+  mount_uploader :image_url, ProductImageUploader
   has_many :line_items
   belongs_to :category
   before_destroy :ensure_not_referenced_by_any_line_item
