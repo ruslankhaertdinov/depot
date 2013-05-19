@@ -50,4 +50,8 @@ ru:
       category: "Категория"
       description: "Описание"
 
+  will_paginate:
+    previous_label: "Назад"
+    next_label: "Вперед"
+
   thanks: "Благодарим Вас за заказ"
