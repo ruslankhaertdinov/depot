@@ -7,7 +7,7 @@
               <div class="carousel-inner">
                 <% products.each do |product| %>
                     <div class="item <%= product == products.first ? 'active' : '' %>">
-                      <%= link_to (image_tag product.image_url, alt: ''), store_path(category_id: product.category.id) %>
+                      <%= link_to (image_tag product.image_url.galleried, alt: ''), store_path(category_id: product.category.id) %>
                       <div class="container">
                         <div class="carousel-caption">
                           <p class="lead">
