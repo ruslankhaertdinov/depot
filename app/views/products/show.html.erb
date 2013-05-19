@@ -4,23 +4,23 @@
   </p>
 
   <p>
-    <b>Title:</b>
+    <b><%= t('.title') %>:</b>
     <%= @product.title %>
   </p>
 
   <p>
-    <b>Category:</b>
+    <b><%= t('.category') %>:</b>
     <%= @product.category.title %>
   </p>
 
   <p>
-    <b>Description:</b>
+    <b><%= t('.description') %>:</b>
     <%= @product.description %>
   </p>
 
   <p>
-    <b>Price:</b>
-    <%= @product.price %>
+    <b><%= t('.price') %>:</b>
+    $<%= @product.price %>
   </p>
 
   <%= button_to t('.add_html'), line_items_path(product_id: @product), remote: true, class: 'btn btn-mini btn-primary btn_add_product' %>
