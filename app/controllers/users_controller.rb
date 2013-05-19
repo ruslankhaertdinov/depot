@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   skip_before_filter :authorize, only: [:new, :create]
-
+  before_filter :authorize_admin, except: [:new, :create]
 
   def index
-    @users = User.order(:name)
+    @users = User.order(:name).paginate(page: params[:page], per_page: 10)
 
     respond_to do |format|
       format.html
