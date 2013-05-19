@@ -35,8 +35,9 @@ class AddSomeProducts < ActiveRecord::Migration
 
   def up
     PRODUCTS.each do |product|
-      Product.create!(product)
-      puts "#{product[:title]} was created"
+      p = Product.new(product)
+      p.save(validate: false)
+      puts "#{p.title} was created"
     end
     puts "done"
   end
