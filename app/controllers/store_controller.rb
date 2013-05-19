@@ -4,6 +4,11 @@ class StoreController < ApplicationController
   skip_before_filter :authorize
 
   def index
+    if params[:set_locale]
+      redirect_to store_path(locale: params[:set_locale])
+      return
+    end
+
     @products = get_products.paginate(page: params[:page], per_page: 12)
     @cart = current_cart
     @available_categories = Category.available
