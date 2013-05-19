@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true, length: {minimum: 3}
 
   def self.available
-    Category.joins(:products)
+    Category.joins(:products).uniq
   end
 
   def title_ru
