@@ -3,7 +3,7 @@
     <%= link_to 'Главная', store_path %>
   </li>
 
-  <% if current_path(params[:category_id]) %>
+  <% if params[:category_id] %>
       <li class="active">
         <span class="divider">/</span>
         <%= current_path(params[:category_id]) %>
