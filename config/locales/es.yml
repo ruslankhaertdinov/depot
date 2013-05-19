@@ -11,6 +11,9 @@ es:
     index:
       title_html: "Su Cat&aacute;logo de Pragmatic"
       add_html: "A&ntilde;adir al Carrito"
+      price: "Rrecio"
+      category: "Categoría"
+      description: "Descripción"
 
   carts:
     cart:
@@ -41,6 +44,10 @@ es:
   products:
     show:
       add_html: "A&ntilde;adir al Carrito"
+      price: "Rrecio"
+      title: "Nombre"
+      category: "Categoría"
+      description: "Descripción"
 
   activerecord:
     errors:

@@ -14,6 +14,9 @@ en:
     index:
       title_html: "Your Pragmatic Catalog"
       add_html: "Add to Cart"
+      price: "Price"
+      category: "Category"
+      description: "Description"
 
   carts:
     cart:
@@ -44,6 +47,10 @@ en:
   products:
     show:
       add_html: "Add to Cart"
+      price: "Price"
+      title: "Title"
+      category: "Category"
+      description: "Description"
 
 
   thanks: "Thank you for your order"

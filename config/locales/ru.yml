@@ -11,6 +11,9 @@ ru:
     index:
       title_html: "Каталог товаров"
       add_html: "Добавить в корзину"
+      price: "Цена"
+      category: "Категория"
+      description: "Описание"
 
   carts:
     cart:
@@ -41,5 +44,9 @@ ru:
   products:
     show:
       add_html: "Добавить в корзину"
+      price: "Цена"
+      title: "Название"
+      category: "Категория"
+      description: "Описание"
 
   thanks: "Благодарим Вас за заказ"
