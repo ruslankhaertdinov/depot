@@ -28,14 +28,23 @@
     </div>
     <div class="span6 top-menu">
       <ul class="nav nav-pills">
-        <li><a href="#">Доставка и оплата</a></li>
-        <li><%= link_to 'Products', products_path %></li>
+        <li><%= link_to 'Catalog', store_path %></li>
         <% if logged_in? %>
             <li><%= link_to 'Orders', orders_path %></li>
             <li><%= link_to 'Logout', logout_path, method: :delete %></li>
         <% else %>
             <li><%= link_to 'Login', login_path %></li>
         <% end %>
+        <li>
+          <%= form_tag store_path, class: 'locale' do %>
+              <%= select_tag 'set_locale',
+                             options_for_select(LANGUAGES, I18n.locale.to_s),
+                             class: 'span2',
+                             onchange: 'this.form.submit()' %>
+              <%= submit_tag 'submit' %>
+              <%= javascript_tag "$('.locale input').hide()" %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

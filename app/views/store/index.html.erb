@@ -9,6 +9,8 @@
     <div class="span3">
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
+          <%= I18n.locale.to_s %>
+
           <% @available_categories.each do |category| %>
               <li class="<%= params[:category_id].to_i == category.id ? 'active' : '' %>">
                 <%= link_to category.title_ru, store_path(category_id: category.id) %>
