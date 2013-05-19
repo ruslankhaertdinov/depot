@@ -9,8 +9,10 @@
           <th>Email</th>
           <th>Pay type</th>
           <th></th>
-          <th></th>
-          <th></th>
+          <% if current_user_admin? %>
+              <th></th>
+              <th></th>
+          <% end %>
         </tr>
 
         <% @orders.each do |order| %>
@@ -20,8 +22,10 @@
               <td><%= truncate(order.email, length: 21) %></td>
               <td><%= order.pay_type %></td>
               <td><%= link_to 'Show', order, class: 'btn btn-mini btn-success' %></td>
-              <td><%= link_to 'Edit', edit_order_path(order), class: 'btn btn-mini btn-warning' %></td>
-              <td><%= link_to 'Destroy', order, class: 'btn btn-mini btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% if current_user_admin? %>
+                  <td><%= link_to 'Edit', edit_order_path(order), class: 'btn btn-mini btn-warning' %></td>
+                  <td><%= link_to 'Destroy', order, class: 'btn btn-mini btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              <% end %>
             </tr>
         <% end %>
       </table>

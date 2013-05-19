@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :authorize_admin, only: [:edit, :update, :destroy]
 
   def index
     @orders = if current_user_admin?
