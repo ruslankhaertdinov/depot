@@ -8,7 +8,7 @@
       <div class="well sidebar-nav">
         <ul class="nav nav-list">
           <% @available_categories.each do |category| %>
-              <li><%= link_to category.title_ru, store_path(category_id: category.id), remote: true %></li
+              <li><%= link_to category.title_ru, store_path(category_id: category.id) %></li
               <li class="divider"></li>
           <% end %>
         </ul>
@@ -17,14 +17,17 @@
     <div class="span9 products" id="store_products">
       <div class="row">
         <ul class="thumbnails">
+          <div class="span12">
+            <%= render 'bread_crumb' %>
+          </div>
           <% @products.each do |product| %>
               <li class="span3">
                 <div class="thumbnail product">
-                  <%= link_to (image_tag product.image_url), store_path(category_id: product.category.id), remote: true %>
+                  <%= link_to (image_tag product.image_url), product_path(product) %>
                   <div class="caption">
-                    <h5>
-                      <%= link_to product.title, store_path(category_id: product.category.id), remote: true %>
-                    </h5>
+                    <h5><%= link_to product.title, product_path(product) %></h5>
+                    <p> Цена: $<%= product.price %></p>
+                    <%= button_to t('.add_html'), line_items_path(product_id: product), remote: true, class: 'btn btn-mini btn-primary btn_add_product' %>
                   </div>
                 </div>
               </li>

@@ -1,9 +1,12 @@
 <ul class="breadcrumb">
   <li>
     <%= link_to 'Главная', store_path %>
-    <span class="divider">/</span>
   </li>
-  <li class="active">
-    <%= current_path(params[:category_id]) %>
-  </li>
+
+  <% if current_path(params[:category_id]) %>
+      <li class="active">
+        <span class="divider">/</span>
+        <%= current_path(params[:category_id]) %>
+      </li>
+  <% end %>
 </ul>
