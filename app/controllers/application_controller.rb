@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
 
   def authorize
     unless User.find_by_id(session[:user_id])
+      session[:prev_url] = request.url
       redirect_to login_url, notice: "Please log in"
     end
   end

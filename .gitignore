@@ -15,4 +15,4 @@
 /tmp
 /.idea
 .env
-public/uploads/product/*
+public/uploads/*
