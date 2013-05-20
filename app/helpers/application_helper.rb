@@ -10,7 +10,7 @@ module ApplicationHelper
     if product && product.image_url && product.image_url.thumb.present?
       product.image_url.thumb
     else
-      'thumb_placeholder.png'
+      'thumb_placeholder.jpg'
     end
   end
 end
