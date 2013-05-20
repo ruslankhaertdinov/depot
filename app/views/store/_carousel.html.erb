@@ -6,16 +6,18 @@
             <div id="myCarousel" class="carousel slide">
               <div class="carousel-inner">
                 <% products.each do |product| %>
-                    <div class="item <%= product == products.first ? 'active' : '' %>">
-                      <%= link_to (image_tag product.image_url.galleried, alt: ''), store_path(category_id: product.category.id) %>
-                      <div class="container">
-                        <div class="carousel-caption">
-                          <p class="lead">
-                            <%= link_to product.category.formatted_title, store_path(category_id: product.category.id) %>
-                          </p>
+                    <% if product.image_url && product.image_url.galleried.present? %>
+                        <div class="item <%= product == products.first ? 'active' : '' %>">
+                          <%= link_to (image_tag product.image_url.galleried, alt: ''), store_path(category_id: product.category.id) %>
+                          <div class="container">
+                            <div class="carousel-caption">
+                              <p class="lead">
+                                <%= link_to product.category.formatted_title, store_path(category_id: product.category.id) %>
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                    <% end %>
                 <% end %>
               </div>
               <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
