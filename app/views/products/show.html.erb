@@ -1,7 +1,9 @@
 <div class="container">
-  <p>
-    <%= image_tag(@product.image_url) %>
-  </p>
+  <% if @product.image_url.present? %>
+      <p>
+        <%= image_tag(@product.image_url) %>
+      </p>
+  <% end %>
 
   <p>
     <b><%= t('.title') %>:</b>
