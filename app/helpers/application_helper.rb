@@ -5,4 +5,12 @@ module ApplicationHelper
     end
     content_tag("div", attributes, &block)
   end
+
+  def thumb_for(product)
+    if product && product.image_url && product.image_url.thumb.present?
+      product.image_url.thumb
+    else
+      'thumb_placeholder.png'
+    end
+  end
 end
