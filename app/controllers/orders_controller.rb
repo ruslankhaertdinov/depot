@@ -15,11 +15,17 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.where(id: params[:id], user_id: current_user.id).first
+    @order = if current_user_admin?
+               Order.find(params[:id])
+             else
+               Order.where(id: params[:id], user_id: current_user.id).first
+             end
+
     unless @order
       redirect_to store_url, notice: 'There are no order for show'
       return
     end
+
     @products = @order.line_items.map { |i|
       product = Product.find(i.product)
       [product.title, product.price.to_f, i.quantity, product.price.to_f*i.quantity]
