@@ -3,7 +3,7 @@
   <table class="table table-hover table-condensed orders">
     <% @products.each do |product| %>
         <tr>
-          <td><%= image_tag(product.image_url, size: '250x150') %></td>
+          <td><%= image_tag thumb_for(product) %></td>
           <td>
             <dl>
               <dt><%= product.title %></dt>
