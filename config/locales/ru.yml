@@ -21,6 +21,7 @@ ru:
       title: "Ваша корзина"
       empty: "Очистить корзину"
       checkout: "Оформить заказ"
+      cart_empty: "Ваша корзина пуста"
 
   number:
     currency:

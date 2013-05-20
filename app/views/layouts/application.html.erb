@@ -9,7 +9,7 @@
 <body>
 <div class="card">
   <div id="empty_card_content">
-    Ваша корзина пуста
+    <%= t('carts.cart.cart_empty') %>
   </div>
   <% if @cart %>
       <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
