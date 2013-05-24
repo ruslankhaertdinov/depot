@@ -46,4 +46,5 @@ end
 
 gem 'dotenv-rails'
 gem 'carrierwave'
-gem "mini_magick"
+gem 'mini_magick'
+gem 'fog',  '~> 1.3.1'
