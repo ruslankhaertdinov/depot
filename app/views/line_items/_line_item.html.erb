@@ -3,7 +3,11 @@
 <% else %>
     <tr>
 <% end %>
-<td><%= line_item.quantity %>&nbsp;&times;&nbsp;</td>
+
+<td>
+  <i class="icon-minus-sign icon-white"></i>
+  <%= line_item.quantity %>&nbsp;&times;&nbsp;
+</td>
 <td><%= line_item.product.title %></td>
 <td class="item_price">&nbsp;<%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
 </tr>
