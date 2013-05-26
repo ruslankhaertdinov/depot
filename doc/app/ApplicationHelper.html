@@ -64,7 +64,11 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-i-formatted_currency">#formatted_currency</a>
+    
     <li><a href="#method-i-hidden_div_if">#hidden_div_if</a>
+    
+    <li><a href="#method-i-thumb_for">#thumb_for</a>
     
   </ul>
 </nav>
@@ -101,6 +105,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -116,6 +126,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -166,6 +178,36 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-formatted_currency" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">formatted_currency</span><span
+            class="method-args">(sum)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="formatted_currency-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">formatted_currency</span>(<span class="ruby-identifier">sum</span>)
+  <span class="ruby-identifier">number_to_currency</span>(<span class="ruby-identifier">sum</span>, <span class="ruby-identifier">unit</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;$&quot;</span>, <span class="ruby-identifier">format</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;%u%n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- formatted_currency-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- formatted_currency-method -->
+
+    
       <div id="method-i-hidden_div_if" class="method-detail ">
         
         <div class="method-heading">
@@ -197,6 +239,40 @@
 
         
       </div><!-- hidden_div_if-method -->
+
+    
+      <div id="method-i-thumb_for" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">thumb_for</span><span
+            class="method-args">(product)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="thumb_for-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">thumb_for</span>(<span class="ruby-identifier">product</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">product</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">product</span>.<span class="ruby-identifier">image_url</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">product</span>.<span class="ruby-identifier">image_url</span>.<span class="ruby-identifier">thumb</span>.<span class="ruby-identifier">present?</span>
+    <span class="ruby-identifier">product</span>.<span class="ruby-identifier">image_url</span>.<span class="ruby-identifier">thumb</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-string">'thumb_placeholder.jpg'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- thumb_for-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- thumb_for-method -->
 
     
     </section><!-- public-instance-method-details -->

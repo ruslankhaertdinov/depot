@@ -74,6 +74,8 @@
     
     <li><a href="#method-i-shipped">#shipped</a>
     
+    <li><a href="#method-i-welcome_email">#welcome_email</a>
+    
   </ul>
 </nav>
 
@@ -109,6 +111,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -124,6 +132,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -185,18 +195,15 @@
 
         <div class="method-description">
           
-          <p>Subject can be set in your I18n file at config/locales/en.yml with the
-following lookup:</p>
-
-<pre>en.order_notifier.received.subject</pre>
+          
           
 
           
           <div class="method-source-code" id="received-source">
-            <pre><span class="ruby-comment"># File app/mailers/order_notifier.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/mailers/order_notifier.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">received</span>(<span class="ruby-identifier">order</span>)
   <span class="ruby-ivar">@order</span> = <span class="ruby-identifier">order</span>
-  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'Pragmatic Store Order Confirmation'</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'Order Confirmation'</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- received-source -->
           
@@ -219,18 +226,15 @@ following lookup:</p>
 
         <div class="method-description">
           
-          <p>Subject can be set in your I18n file at config/locales/en.yml with the
-following lookup:</p>
-
-<pre>en.order_notifier.shipped.subject</pre>
+          
           
 
           
           <div class="method-source-code" id="shipped-source">
-            <pre><span class="ruby-comment"># File app/mailers/order_notifier.rb, line 19</span>
+            <pre><span class="ruby-comment"># File app/mailers/order_notifier.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">shipped</span>(<span class="ruby-identifier">order</span>)
   <span class="ruby-ivar">@order</span> = <span class="ruby-identifier">order</span>
-  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'Pragmatic Store Order Shipped'</span>
+  <span class="ruby-identifier">mail</span> <span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">'Order Shipped'</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- shipped-source -->
           
@@ -240,6 +244,38 @@ following lookup:</p>
 
         
       </div><!-- shipped-method -->
+
+    
+      <div id="method-i-welcome_email" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">welcome_email</span><span
+            class="method-args">(user)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="welcome_email-source">
+            <pre><span class="ruby-comment"># File app/mailers/order_notifier.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">welcome_email</span>(<span class="ruby-identifier">user</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">user</span>
+  <span class="ruby-ivar">@url</span>  = <span class="ruby-string">&quot;http://example.com/login&quot;</span>
+  <span class="ruby-identifier">mail</span>(<span class="ruby-identifier">to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">email</span>, <span class="ruby-identifier">subject</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Welcome to My Awesome Site&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- welcome_email-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- welcome_email-method -->
 
     
     </section><!-- public-instance-method-details -->

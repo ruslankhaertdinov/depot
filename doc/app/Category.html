@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>module LineItemsHelper - Rails Application Documentation</title>
+<title>class Category - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body id="top" class="module">
+<body id="top" class="class">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/helpers/line_items_helper.rb
+    <li>app/models/category.rb
   </ul>
 </nav>
 
@@ -56,9 +56,27 @@
 
   <div id="class-metadata">
     
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-c-available">::available</a>
     
+    <li><a href="#method-i-formatted_title">#formatted_title</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -140,7 +158,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="module">module LineItemsHelper</h1>
+  <h1 class="class">class Category</h1>
 
   <div id="description" class="description">
     
@@ -160,6 +178,78 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-available" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">available</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="available-source">
+            <pre><span class="ruby-comment"># File app/models/category.rb, line 7</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">available</span>
+  <span class="ruby-constant">Category</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-value">:products</span>).<span class="ruby-identifier">uniq</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- available-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- available-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-formatted_title" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">formatted_title</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="formatted_title-source">
+            <pre><span class="ruby-comment"># File app/models/category.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">formatted_title</span>
+  <span class="ruby-identifier">title</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r\W/</span>, <span class="ruby-string">' '</span>).<span class="ruby-identifier">capitalize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- formatted_title-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- formatted_title-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

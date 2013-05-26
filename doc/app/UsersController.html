@@ -119,6 +119,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -134,6 +140,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -195,18 +203,23 @@
 
         <div class="method-description">
           
-          <p>POST /users POST /users.json</p>
+          
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">users_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;User #{@user.name} was successfully created.&quot;</span> }
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-constant">OrderNotifier</span>.<span class="ruby-identifier">welcome_email</span>(<span class="ruby-ivar">@user</span>).<span class="ruby-identifier">deliver</span>
+      <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;error on welcome_email: #{e}&quot;</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;User #{@user.name} was successfully created.&quot;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;new&quot;</span> }
@@ -235,12 +248,12 @@
 
         <div class="method-description">
           
-          <p>DELETE /users/1 DELETE /users/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -277,12 +290,12 @@
 
         <div class="method-description">
           
-          <p>GET /users/1/edit</p>
+          
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -307,17 +320,17 @@
 
         <div class="method-description">
           
-          <p>GET /users GET /users.json</p>
+          
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>)
+  <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">order</span>(<span class="ruby-value">:name</span>).<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">page</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>], <span class="ruby-identifier">per_page</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@users</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -342,17 +355,17 @@
 
         <div class="method-description">
           
-          <p>GET /users/new GET /users/new.json</p>
+          
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -377,17 +390,17 @@
 
         <div class="method-description">
           
-          <p>GET /users/1 GET /users/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -412,12 +425,12 @@
 
         <div class="method-description">
           
-          <p>PUT /users/1 PUT /users/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 

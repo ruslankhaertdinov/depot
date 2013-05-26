@@ -121,6 +121,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -136,6 +142,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -197,12 +205,12 @@
 
         <div class="method-description">
           
-          <p>POST /products POST /products.json</p>
+          
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:product</span>])
 
@@ -237,12 +245,12 @@
 
         <div class="method-description">
           
-          <p>DELETE /products/1 DELETE /products/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 74</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@product</span>.<span class="ruby-identifier">destroy</span>
@@ -273,7 +281,7 @@
 
         <div class="method-description">
           
-          <p>GET /products/1/edit</p>
+          
           
 
           
@@ -303,17 +311,17 @@
 
         <div class="method-description">
           
-          <p>GET /products GET /products.json</p>
+          
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@products</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@products</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">paginate</span>(<span class="ruby-identifier">page</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:page</span>], <span class="ruby-identifier">order</span><span class="ruby-operator">:</span> <span class="ruby-string">'created_at desc'</span>, <span class="ruby-identifier">per_page</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># index.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@products</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -338,17 +346,17 @@
 
         <div class="method-description">
           
-          <p>GET /products/new GET /products/new.json</p>
+          
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">new</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># new.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@product</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -373,17 +381,18 @@
 
         <div class="method-description">
           
-          <p>GET /products/1 GET /products/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-identifier">current_cart</span>
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> <span class="ruby-comment"># show.html.erb</span>
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span>
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@product</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -408,12 +417,12 @@
 
         <div class="method-description">
           
-          <p>PUT /products/1 PUT /products/1.json</p>
+          
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 58</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
@@ -453,7 +462,7 @@
 
           
           <div class="method-source-code" id="who_bought-source">
-            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 84</span>
+            <pre><span class="ruby-comment"># File app/controllers/products_controller.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">who_bought</span>
   <span class="ruby-ivar">@product</span> = <span class="ruby-constant">Product</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
