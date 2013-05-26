@@ -50,11 +50,16 @@ $(document).ready(function () {
 
   $(".alert").alert();
 
-  $(document).on('mouseenter', '.minus-item', function () {
+  $(document).on('mouseenter', '.edit-item', function () {
     $(this).removeClass('icon-white');
   });
 
-  $(document).on('mouseleave', '.minus-item', function () {
+  $(document).on('mouseleave', '.edit-item', function () {
     $(this).addClass('icon-white');
+  });
+
+  $(document).on('click', '.increase-item', function(e) {
+    e.preventDefault();
+    $(this).parents('.line_item').find('form').submit();
   });
 });
