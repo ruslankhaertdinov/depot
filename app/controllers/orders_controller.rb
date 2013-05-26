@@ -26,10 +26,11 @@ class OrdersController < ApplicationController
       return
     end
 
-    @products = @order.line_items.map { |i|
+    @products = @order.line_items.map do |i|
       product = Product.find(i.product)
-      [product.title, product.price.to_f, i.quantity, product.price.to_f*i.quantity]
-    }
+      {title: product.title, unit_price: product.price.to_f, quantity: i.quantity, total_price: product.price.to_f*i.quantity}
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @order }
@@ -59,6 +60,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order].merge!(user_id: current_user.id))
     @order.add_line_items_from_cart(current_cart)
+    @order.total_sum = current_cart.total_price
 
     respond_to do |format|
       if @order.save

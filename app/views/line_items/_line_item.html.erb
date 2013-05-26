@@ -21,10 +21,10 @@
 <td>
   <span class="title">
     <%= line_item.product.title %>
-    (<%= number_to_currency(line_item.product.price, unit: "$", format: "%u%n") %>)
+    (<%= formatted_currency(line_item.product.price) %>)
   </span>
 </td>
-<td class="item_price"><%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
+<td class="item_price"><%= formatted_currency(line_item.total_price) %></td>
 
 <%= form_tag '/en/line_items', remote: true, class: 'form-increase' do %>
     <%= hidden_field_tag 'product_id', line_item.product_id %>
