@@ -30,24 +30,31 @@
 //= require_tree .
 
 $(document).ready(function () {
-    $('.carousel').carousel();
+  $('.carousel').carousel();
 
-    if ($('table.orders').length > 0) {
-        $('.card').hide();
-    } else {
-        $('.card').show();
-    }
+  if ($('table.orders').length > 0) {
+    $('.card').hide();
+  } else {
+    $('.card').show();
+  }
 
-    if ($('.cart_title').is(':visible')) {
-        $('#empty_card_content').hide();
-    } else {
-        $('#empty_card_content').show();
-    }
+  if ($('.cart_title').is(':visible')) {
+    $('#empty_card_content').hide();
+  } else {
+    $('#empty_card_content').show();
+  }
 
-    $(document).on('click', '.btn_add_product', function(){
-        $('#empty_card_content').hide('blind', 500);
-    });
+  $(document).on('click', '.btn_add_product', function () {
+    $('#empty_card_content').hide('blind', 500);
+  });
 
+  $(".alert").alert();
 
-    $(".alert").alert();
+  $(document).on('mouseenter', '.minus-item', function () {
+    $(this).removeClass('icon-white');
+  });
+
+  $(document).on('mouseleave', '.minus-item', function () {
+    $(this).addClass('icon-white');
+  });
 });

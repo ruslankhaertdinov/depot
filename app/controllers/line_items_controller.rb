@@ -52,6 +52,13 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def decrease
+    @cart = current_cart
+    @line_item = @cart.remove_product(params[:product_id])
+    @line_item.save if @line_item
+    render :decrease
+  end
+
   def update
     @line_item = LineItem.find(params[:id])
 
