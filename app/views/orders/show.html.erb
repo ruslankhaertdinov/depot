@@ -31,9 +31,9 @@
     <% @products.each do |product| %>
         <tr>
           <td><%= product[:title] %></td>
-          <td><%= product[:unit_price] %></td>
+          <td><%= formatted_currency(product[:unit_price]) %></td>
           <td><%= product[:quantity] %></td>
-          <td><%= product[:total_price] %></td>
+          <td><%= formatted_currency(product[:total_price]) %></td>
         </tr>
     <% end %>
   </table>
