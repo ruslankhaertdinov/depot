@@ -23,18 +23,24 @@
     <thead>
     <tr>
       <th>Product</th>
-      <th>Price</th>
-      <th>Sum</th>
+      <th>Unit price</th>
+      <th>Quantity</th>
+      <th>Product's total price</th>
     </tr>
     </thead>
     <% @products.each do |product| %>
         <tr>
-          <td><%= "#{product[0]}" %></td>
-          <td><%= "#{product[1]} x #{product[2]}" %></td>
-          <td><%= "#{product[3]}" %></td>
+          <td><%= product[:title] %></td>
+          <td><%= product[:unit_price] %></td>
+          <td><%= product[:quantity] %></td>
+          <td><%= product[:total_price] %></td>
         </tr>
     <% end %>
   </table>
+
+  <% if @order.total_sum %>
+    <p>Order's total price is <b><%= formatted_currency(@order.total_sum) %></b></p>
+  <% end %>
 
 
   <% if current_user_admin? %>

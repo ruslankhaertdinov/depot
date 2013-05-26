@@ -13,4 +13,8 @@ module ApplicationHelper
       'thumb_placeholder.jpg'
     end
   end
+
+  def formatted_currency(sum)
+    number_to_currency(sum, unit: "$", format: "%u%n")
+  end
 end
