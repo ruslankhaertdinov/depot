@@ -42,7 +42,6 @@
     <p>Order's total price is <b><%= formatted_currency(@order.total_sum) %></b></p>
   <% end %>
 
-
   <% if current_user_admin? %>
       <%= link_to 'Edit', edit_order_path(@order) %> |
   <% end %>
