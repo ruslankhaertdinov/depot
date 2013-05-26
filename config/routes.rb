@@ -13,7 +13,9 @@ Depot::Application.routes.draw do
   scope '(:locale)' do
     resources :orders
     resources :users
-    resources :line_items
+    resources :line_items do
+      get :decrease, on: :collection
+    end
     resources :carts
     resources :products do
       get :who_bought, on: :member

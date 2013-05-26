@@ -1,12 +1,17 @@
 <% if line_item == @current_item %>
-    <tr id="current_item">
+    <tr id="current_item" data-product-id="<%= line_item.product_id %>" class="line_item_tr">
 <% else %>
-    <tr>
+    <tr data-product-id="<%= line_item.product_id %>" class="line_item_tr">
 <% end %>
 
 <td>
   <i class="icon-minus-sign icon-white minus-item"></i>
-  <%= line_item.quantity %>&nbsp;&times;&nbsp;
+  <span class="quantity">
+    <%= line_item.quantity %>
+  </span>
+  <span>
+    &nbsp;&times;&nbsp;
+  </span>
 </td>
 <td><%= line_item.product.title %></td>
 <td class="item_price">&nbsp;<%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
