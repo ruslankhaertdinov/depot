@@ -26,7 +26,6 @@
 </td>
 <td class="item_price"><%= formatted_currency(line_item.total_price) %></td>
 
-<%= form_tag '/en/line_items', remote: true, class: 'form-increase' do %>
-    <%= hidden_field_tag 'product_id', line_item.product_id %>
+<%= form_tag "/en/line_items?product_id=#{line_item.product_id}", remote: true, class: 'form-increase' do %>
 <% end %>
 </tr>
