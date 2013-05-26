@@ -72,7 +72,15 @@
     
     <li><a href="#method-i-authorize">#authorize</a>
     
+    <li><a href="#method-i-authorize_admin">#authorize_admin</a>
+    
+    <li><a href="#method-i-current_user">#current_user</a>
+    
+    <li><a href="#method-i-current_user_admin-3F">#current_user_admin?</a>
+    
     <li><a href="#method-i-default_url_options">#default_url_options</a>
+    
+    <li><a href="#method-i-logged_in-3F">#logged_in?</a>
     
     <li><a href="#method-i-set_i18n_locale_from_params">#set_i18n_locale_from_params</a>
     
@@ -111,6 +119,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -126,6 +140,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -172,6 +188,102 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-current_user" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_user</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_user-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_user</span>
+  <span class="ruby-ivar">@current_user</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_user-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_user-method -->
+
+    
+      <div id="method-i-current_user_admin-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">current_user_admin?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="current_user_admin-3F-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">current_user_admin?</span>
+  <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:admin</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- current_user_admin-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- current_user_admin-3F-method -->
+
+    
+      <div id="method-i-logged_in-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">logged_in?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="logged_in-3F-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">logged_in?</span>
+  <span class="ruby-identifier">current_user</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- logged_in-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- logged_in-3F-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
      <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Protected Instance Methods</h3>
 
@@ -192,9 +304,10 @@
 
           
           <div class="method-source-code" id="authorize-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 18</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+    <span class="ruby-identifier">session</span>[<span class="ruby-value">:prev_url</span>] = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">url</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Please log in&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -206,6 +319,39 @@
 
         
       </div><!-- authorize-method -->
+
+    
+      <div id="method-i-authorize_admin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">authorize_admin</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="authorize_admin-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize_admin</span>
+  <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>])
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:admin</span>)
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Please log in&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- authorize_admin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- authorize_admin-method -->
 
     
       <div id="method-i-default_url_options" class="method-detail ">
@@ -224,9 +370,9 @@
 
           
           <div class="method-source-code" id="default_url_options-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 36</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">default_url_options</span>
-  {<span class="ruby-identifier">locale</span><span class="ruby-operator">:</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span>}
+  { <span class="ruby-identifier">locale</span><span class="ruby-operator">:</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">locale</span> }
 <span class="ruby-keyword">end</span></pre>
           </div><!-- default_url_options-source -->
           
@@ -254,7 +400,7 @@
 
           
           <div class="method-source-code" id="set_i18n_locale_from_params-source">
-            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_i18n_locale_from_params</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:locale</span>]
     <span class="ruby-keyword">if</span> <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">available_locales</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:locale</span>].<span class="ruby-identifier">to_sym</span>)

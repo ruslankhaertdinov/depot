@@ -111,6 +111,12 @@
   
     <li><a href="./CartsHelper.html">CartsHelper</a>
   
+    <li><a href="./CategoriesController.html">CategoriesController</a>
+  
+    <li><a href="./CategoriesHelper.html">CategoriesHelper</a>
+  
+    <li><a href="./Category.html">Category</a>
+  
     <li><a href="./LineItem.html">LineItem</a>
   
     <li><a href="./LineItemsController.html">LineItemsController</a>
@@ -126,6 +132,8 @@
     <li><a href="./OrdersHelper.html">OrdersHelper</a>
   
     <li><a href="./Product.html">Product</a>
+  
+    <li><a href="./ProductImageUploader.html">ProductImageUploader</a>
   
     <li><a href="./ProductsController.html">ProductsController</a>
   
@@ -192,12 +200,20 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 7</span>
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_name</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>])
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">user</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:password</span>])
     <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>
-    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">admin_url</span>
+
+    <span class="ruby-identifier">redirect_url</span> = <span class="ruby-keyword">if</span> <span class="ruby-identifier">session</span>[<span class="ruby-value">:prev_url</span>].<span class="ruby-identifier">present?</span>
+      <span class="ruby-identifier">session</span>[<span class="ruby-value">:prev_url</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">user</span>.<span class="ruby-identifier">try</span>(<span class="ruby-value">:admin</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">admin_url</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">store_url</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">session</span>[<span class="ruby-value">:prev_url</span>] = <span class="ruby-keyword">nil</span>
+
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">redirect_url</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">login_url</span>, <span class="ruby-identifier">alert</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Invalid user/password combination&quot;</span>
   <span class="ruby-keyword">end</span>
@@ -228,7 +244,7 @@
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 17</span>
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">session</span>[<span class="ruby-value">:user_id</span>] = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">store_url</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Logged out&quot;</span>
@@ -261,6 +277,7 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@cart</span> = <span class="ruby-identifier">current_cart</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
