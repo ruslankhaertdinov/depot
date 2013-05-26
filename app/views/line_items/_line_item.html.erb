@@ -10,9 +10,15 @@
               remote: true
   %>
   <span class="quantity">
-    <%= line_item.quantity %>
+    <%= line_item.quantity %> &times;
+  </span>
+
+</td>
+
+<td>
+    <span class="title">
+    <%= line_item.product.title %>
   </span>
 </td>
-<td><%= line_item.product.title %></td>
 <td class="item_price"><%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
 </tr>
