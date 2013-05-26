@@ -19,8 +19,9 @@
 </td>
 
 <td>
-    <span class="title">
+  <span class="title">
     <%= line_item.product.title %>
+    (<%= number_to_currency(line_item.product.price, unit: "$", format: "%u%n") %>)
   </span>
 </td>
 <td class="item_price"><%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
