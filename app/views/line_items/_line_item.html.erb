@@ -1,18 +1,18 @@
 <% if line_item == @current_item %>
-    <tr id="current_item" data-product-id="<%= line_item.product_id %>" class="line_item_tr">
+    <tr id="current_item" class="line_item">
 <% else %>
-    <tr data-product-id="<%= line_item.product_id %>" class="line_item_tr">
+    <tr class="line_item">
 <% end %>
 
 <td>
-  <i class="icon-minus-sign icon-white minus-item"></i>
+  <%= link_to '<i class="icon-minus-sign icon-white minus-item"></i>'.html_safe,
+              decrease_line_items_path(product_id: line_item.product_id),
+              remote: true
+  %>
   <span class="quantity">
     <%= line_item.quantity %>
   </span>
-  <span>
-    &nbsp;&times;&nbsp;
-  </span>
 </td>
 <td><%= line_item.product.title %></td>
-<td class="item_price">&nbsp;<%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
+<td class="item_price"><%= number_to_currency(line_item.total_price, unit: "$", format: "%u%n") %></td>
 </tr>

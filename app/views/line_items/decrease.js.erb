@@ -1,0 +1,8 @@
+$('#cart').html("<%=j render @cart %>");
+$('#current_item').css({'background-color':'#5bc0de'}).
+        animate({'background-color':'#08C'}, 1000);
+
+if ($('.line_item').length < 1) {
+    $('#cart').hide();
+    $('#empty_card_content').show();
+}

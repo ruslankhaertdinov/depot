@@ -37,8 +37,6 @@ class LineItemsController < ApplicationController
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
     @line_item.product = product
-    puts "@cart = #{@cart.id}"
-    puts "@line_item = #{@line_item.id}"
 
     respond_to do |format|
       if @line_item.save
@@ -57,23 +55,8 @@ class LineItemsController < ApplicationController
   def decrease
     @cart = current_cart
     @line_item = @cart.remove_product(params[:product_id])
-
-    respond_to do |format|
-      if @line_item
-        if @line_item.save
-          format.html { redirect_to store_url }
-          format.js { @current_item = @line_item }
-          format.json { render json: @line_item,
-                               status: :created, location: @line_item }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @line_item.errors,
-                               status: :unprocessable_entity }
-        end
-      else
-        format.json { render json: { quantity: 0 } }
-      end
-    end
+    @line_item.save if @line_item
+    render :decrease
   end
 
   def update
