@@ -1,20 +1,9 @@
 <%= form_for @product, html: {class: 'form-horizontal'} do |f| %>
-    <% if @product.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
-
-          <ul>
-            <% @product.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
     <div class="control-group">
       <%= f.label :title, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :title, size: 40, placeholder: 'Title of the product' %>
+        <%= f.text_field :title, size: 40, placeholder: 'Title of the product', required: true %>
+        <%= render 'shared/validation_message', object: @product, field: :title %>
       </div>
     </div>
 
@@ -22,17 +11,19 @@
       <%= f.label :category, class: 'control-label' %>
       <div class="controls">
         <%= f.select :category_id, Category.all.map { |c| [c.title, c.id] } %>
+        <%= render 'shared/validation_message', object: @product, field: :category %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :description, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_area :description, rows: 6, placeholder: 'Please describe the product' %>
+        <%= f.text_area :description, rows: 6, placeholder: 'Please describe the product', required: true %>
+        <%= render 'shared/validation_message', object: @product, field: :description %>
       </div>
     </div>
 
-    <% if @product.image_url.present? %>
+    <% if !@product.new_record? && @product.image_url.present? %>
         <div class="control-group">
           <%= label_tag 'Current image', nil, class: 'control-label' %>
           <div class="controls">
@@ -44,7 +35,8 @@
     <div class="control-group">
       <%= f.label :image_url, 'Image', class: 'control-label' %>
       <div class="controls">
-        <%= f.file_field :image_url, accept: "image/jpeg,image/png,image/gif,image/jpg,image/bmp" %>
+        <%= f.file_field :image_url, accept: "image/jpeg,image/png,image/gif,image/jpg,image/bmp", required: true %>
+        <%= render 'shared/validation_message', object: @product, field: :image_url %>
       </div>
     </div>
 
@@ -52,7 +44,8 @@
     <div class="control-group">
       <%= f.label :price, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :price %>
+        <%= f.text_field :price, required: true %>
+        <%= render 'shared/validation_message', object: @product, field: :price %>
       </div>
     </div>
 
