@@ -15,7 +15,7 @@ class Cart < ActiveRecord::Base
     current_item = line_items.find_by_product_id(product_id)
     if current_item && current_item.quantity > 1
       current_item.quantity -= 1
-    else
+    elsif current_item
       current_item.delete
       current_item = nil
     end
