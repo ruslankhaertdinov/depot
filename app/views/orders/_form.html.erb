@@ -1,30 +1,25 @@
 <%= form_for @order, html: {class: 'form-horizontal'} do |f| %>
-    <% if @order.errors.any? %>
-        <ul>
-          <% @order.errors.full_messages.each do |msg| %>
-              <li><%= raw msg %></li>
-          <% end %>
-        </ul>
-    <% end %>
-
     <div class="control-group">
       <%= f.label :name, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, size: 40, value: current_user.name, placeholder: 'Please enter your name' %>
+        <%= f.text_field :name, size: 40, value: current_user.name, placeholder: 'Please enter your name', required: true %>
+        <%= render 'shared/validation_message', object: @order, field: :name %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :address, t('.address_html'), class: 'control-label' %>
       <div class="controls">
-        <%= f.text_area :address, rows: 3, cols: 40, placeholder: 'Please enter target address here' %>
+        <%= f.text_area :address, rows: 3, cols: 40, placeholder: 'Please enter target address here', required: true %>
+        <%= render 'shared/validation_message', object: @order, field: :address %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :email, class: 'control-label' %>
       <div class="controls">
-        <%= f.email_field :email, size: 40, value: current_user.email, placeholder: 'Please enter your email' %>
+        <%= f.email_field :email, size: 40, value: current_user.email, placeholder: 'Please enter your email', required: true %>
+        <%= render 'shared/validation_message', object: @order, field: :email %>
       </div>
     </div>
 
@@ -33,6 +28,7 @@
       <div class="controls">
         <%= f.select :pay_type, Order::PAYMENT_TYPES,
                      prompt: t('.pay_prompt_html') %>
+        <%= render 'shared/validation_message', object: @order, field: :pay_type %>
       </div>
     </div>
 
