@@ -1,45 +1,37 @@
 <div class="depot_form">
-  <%= form_for @user, html: {class: 'form-horizontal'} do |f| %>
-      <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %>
-              prohibited this user from being saved:</h2>
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
+  <%= form_for @user, html: {class: 'form-horizontal', id: 'signup-form'} do |f| %>
       <fieldset>
         <legend>Enter User Details</legend>
 
         <div class="control-group">
           <%= f.label :name, class: 'control-label' %>
           <div class="controls">
-            <%= f.text_field :name, size: 40, placeholder: 'Your Name' %>
+            <%= f.text_field :name, size: 40, placeholder: 'Your Name', required: true %>
+            <%= render 'shared/validation_message', object: @user, field: :name %>
           </div>
         </div>
 
         <div class="control-group">
           <%= f.label :email, 'Email', class: 'control-label' %>
           <div class="controls">
-            <%= f.email_field :email, size: 40, placeholder: 'Email' %>
+            <%= f.email_field :email, size: 40, placeholder: 'Email', required: true %>
+            <%= render 'shared/validation_message', object: @user, field: :email %>
           </div>
         </div>
 
         <div class="control-group">
           <%= f.label :password, 'Password', class: 'control-label' %>
           <div class="controls">
-            <%= f.password_field :password, size: 40, placeholder: 'Password' %>
+            <%= f.password_field :password, size: 40, placeholder: 'Password', required: true %>
+            <%= render 'shared/validation_message', object: @user, field: :password %>
           </div>
         </div>
 
         <div class="control-group">
-          <%= f.label :password_confirmation, 'Confirm', class: 'control-label' %>
+          <%= f.label :password_confirmation, 'Confirm', class: 'control-label', required: true %>
           <div class="controls">
             <%= f.password_field :password_confirmation, size: 40, placeholder: 'Password confirmation' %>
+            <%= render 'shared/validation_message', object: @user, field: :password %>
           </div>
         </div>
 
