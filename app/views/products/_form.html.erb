@@ -35,7 +35,7 @@
     <div class="control-group">
       <%= f.label :image_url, 'Image', class: 'control-label' %>
       <div class="controls">
-        <%= f.file_field :image_url, accept: "image/jpeg,image/png,image/gif,image/jpg,image/bmp", required: true %>
+        <%= f.file_field :image_url, accept: "image/jpeg,image/png,image/gif,image/jpg,image/bmp" %>
         <%= render 'shared/validation_message', object: @product, field: :image_url %>
       </div>
     </div>
